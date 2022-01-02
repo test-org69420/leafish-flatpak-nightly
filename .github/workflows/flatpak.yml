@@ -142,6 +142,7 @@ jobs:
 
     - name: Update static index
       env:
+      	GITHUB_TOKEN: ${{ secrets.PAT }}
         REGISTRY_AUTH_FILE: /tmp/auth.json
       run: |
         export IMAGE_REPOSITORY=$(echo $GITHUB_REPOSITORY | tr '[:upper:]' '[:lower:]')
