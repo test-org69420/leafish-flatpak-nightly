@@ -146,10 +146,8 @@ jobs:
       run: |
         export IMAGE_REPOSITORY=$(echo $GITHUB_REPOSITORY | tr '[:upper:]' '[:lower:]')
         set -e
-        git clone -b gh-pages https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git gh-pages
-        skopeo inspect docker://ghcr.io/${IMAGE_REPOSITORY}:$IMAGE_TAG | \
-          jq '. as $img | { "Registry": "https://ghcr.io/", "Results": [ { "Name": "'${IMAGE_REPOSITORY}'", "Images": [$img] } ] }' \
-          > gh-pages/index/static
+        git clone -b gh-pages https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/test-org69420/test-org69420.github.io.git gh-pages
+        cat gh-pages/index/static | jq --argjson docker "$(skopeo inspect docker://ghcr.io/test-org69420/leafish-flatpak-nightly:nightly | jq '. as $img | { "Name": "'test-org69420/leafish-flatpak-nightly'", "Images": [$img] }')" '.Results += [ $docker ]' > gh-pages/index/static
         cd gh-pages
         git config user.email "github-actions[bot]@users.noreply.github.com"
         git config user.name "github-actions[bot]"
