@@ -154,5 +154,15 @@ jobs:
         git config user.name "github-actions[bot]"
         git add index/static
         git commit -m "Update index for ${GITHUB_SHA:0:7}"
-        git remote set-url origin https://${{ secrets.GITHUB_TOKEN }}@github.com/test-org69420/test-org69420.github.io.git
-        git push
+
+    - name: Push to repository
+      uses: cpina/github-action-push-to-another-repository@main
+      env:
+        API_TOKEN_GITHUB: ${{ secrets.PAT }} 
+      with:
+        source-repository: 'gh-pages'
+        destination-github-username: 'test-org69420'
+        destination-repository-name: 'test-org69420.github.io'
+        user-email: github-actions[bot]@users.noreply.github.com
+        commit-message: Update index for ${GITHUB_SHA:0:7}
+        target-branch: gh-pages
