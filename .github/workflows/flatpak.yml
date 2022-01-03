@@ -154,4 +154,4 @@ jobs:
         git config user.name "github-actions[bot]"
         git add index/static
         git commit -m "Update index for ${GITHUB_SHA:0:7}"
-        git push https://${{ secrets.GITHUB_TOKEN }}:github-actions[bot]@github.com/test-org69420/test-org69420.github.io.git
+        git push https://${{ secrets.GITHUB_TOKEN }}@github.com/test-org69420/test-org69420.github.io.git
