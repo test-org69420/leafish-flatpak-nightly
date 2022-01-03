@@ -153,14 +153,13 @@ jobs:
         git config user.email "github-actions[bot]@users.noreply.github.com"
         git config user.name "github-actions[bot]"
         git add index/static
-        git commit -m "Update index for ${GITHUB_SHA:0:7}"
 
     - name: Push to repository
       uses: cpina/github-action-push-to-another-repository@main
       env:
         API_TOKEN_GITHUB: ${{ secrets.PAT }} 
       with:
-        source-repository: 'gh-pages'
+        source-directory: 'gh-pages'
         destination-github-username: 'test-org69420'
         destination-repository-name: 'test-org69420.github.io'
         user-email: github-actions[bot]@users.noreply.github.com
