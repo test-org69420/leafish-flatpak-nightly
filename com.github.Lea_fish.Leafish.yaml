@@ -31,6 +31,7 @@ modules:
       - install -Dm644 ./resources/assets/leafish/logo/leafish-logo.svg -t /app/share/icons/hicolor/scalable/apps/
       - install -Dm644 ./packaging/leafish.desktop -t /app/share/applications/
       - install -Dm644 ./packaging/leafish.metainfo.xml -t /app/share/metainfo/
+      - echo test
     sources:
       - cargo-sources.json
       - type: git
